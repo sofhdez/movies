@@ -44,28 +44,9 @@ const Popular = () => {
           />
         ))
       ) : (
-        // <div>Cargando</div>
         <CircularProgress />
       )}
     </div>
-    // <div>
-    //  {loading ? (
-    //     <div>Cargando</div>
-    //   ) : (
-    //   {populars?.length > 0 ? (
-    //     populars.map((movie) => (
-    //       <MovieCard
-    //         key={movie.id}
-    //         path={movie.poster_path}
-    //         title={movie.title}
-    //         voteAverage={movie.vote_average}
-    //         genreId={movie.genre_ids[0]}
-    //       />
-    //     ))
-    //   ) : (
-    //     <div>Cargando</div>
-    //   )}
-    // </div>
   )
 }
 
