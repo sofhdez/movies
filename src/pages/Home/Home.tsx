@@ -1,21 +1,21 @@
-import React from 'react'
-import { MovieCard } from "components/MovieCard";
-import { movies } from "constants/moviesMock";  // Importing the mock data
+import React from 'react';
+import {MovieCarousel} from 'components/MovieCarousel';
+import { getNowPlaying, getPopular, getTopRated } from 'services';
 
-const Home = () => {
+
+const HomePage = () => {
   return (
     <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          path={movie.poster_path}
-          title={movie.title}
-          voteAverage={movie.vote_average}
-          genreId={movie.genre_ids[0]}
-        />
-      ))}
+      <h2>Más Votadas</h2>
+      <MovieCarousel fetchMoviesFunction={getTopRated} />
+
+      <h2>Más Populares</h2>
+      <MovieCarousel fetchMoviesFunction={getPopular} />
+
+      <h2>Now Playing</h2>
+      <MovieCarousel fetchMoviesFunction={getNowPlaying} />
     </div>
-  )
+  );
 }
 
-export default Home
+export default HomePage;
