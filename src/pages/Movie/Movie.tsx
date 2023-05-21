@@ -1,6 +1,6 @@
 import { CircularProgress } from "@mui/material";
 import { MovieDetails } from "components/MovieDetails";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails } from "services";
 
@@ -9,23 +9,18 @@ const MovieDetailPage = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
-  const getMovieInfo = async () => {
+  const getMovieInfo = useCallback(async () => {
     setLoading(true);
-    try {
-      const res = await getMovieDetails(Number(id));
-      if (res && res.data) {
-        setMovie(res.data);
-        // console.log(res.data);
-      }
-    } catch (err) {
-      console.log(err);
+    const response = await getMovieDetails(Number(id));
+    if (response && response.data) {
+      setMovie(response.data);
     }
     setLoading(false);
-  };
+  }, [id]); // Aquí pasas las dependencias de getMovieInfo
 
   useEffect(() => {
     getMovieInfo();
-  }, [id]); // Dependencia de useEffect es 'id' para que se ejecute cada vez que cambie el id
+  }, [getMovieInfo]); // Y aquí pasas getMovieInfo como dependencia a useEffect
 
   return (
     <div>
@@ -38,7 +33,7 @@ const MovieDetailPage = () => {
           overview={movie.overview}
           title={movie.title}
           voteAverage={movie.vote_average}
-          genreId={movie.genre_ids?.[0]}
+          genreId={movie.genres[0].id}
           releaseDate={movie.release_date}
           runtime={movie.runtime}
           voteCount={movie.vote_count}
