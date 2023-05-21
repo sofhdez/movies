@@ -3,7 +3,7 @@ import { IMAGE_SOURCE } from "constants/moviesMock";
 import genres from "constants/genres.json";
 // MovieCardProp is an interface that we will create in the next step
 import { MovieCardProp } from "./types";
-import "./MovieCard.css";
+import StarIcon from '@mui/icons-material/Star';
 // StyleComponents
 import { ImageContainer, 
   InfoShow, 
@@ -53,10 +53,14 @@ const MovieCard: React.FC<MovieCardProp> = ({
       </ImageContainer>
       <InfoShow>
         <ShowTitle>
-          {/* <GenreLabel genre={getGenre(genreId)}/> */}
           <GenreLabel genre={getGenre(genreId)} color={getRatingColor(voteAverage)} />
           <ShowLabelTitle>{title}</ShowLabelTitle>
-          <ShowCalification>* {voteAverage} / 10</ShowCalification>
+          <ShowCalification>
+            <StarIcon /> 
+            <span>
+              {voteAverage} / 10
+            </span>
+            </ShowCalification>
         </ShowTitle>
       </InfoShow>
     </ShowBox>

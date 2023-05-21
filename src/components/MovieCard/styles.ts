@@ -67,18 +67,6 @@ export const ShowTitle = styled.div`
     color: #fff;
     `;
 
-// export const ShowLabel = styled.div`
-//     background: #ff4444;
-//     color: #fff;
-//     padding: 6px;
-//     font-size: 12px;
-//     font-weight: 500;
-//     line-height: 13px;
-//     margin: 0 0 5px 0;
-//     display: table;
-//     transition: all 0.3s;
-//     border-radius: 5px;
-//     `;
 
 export const ShowLabelTitle = styled.p`
     text-shadow: none;
@@ -99,5 +87,7 @@ export const ShowCalification = styled.p`
     display: table;
     text-transform: uppercase;
     line-height: 4px;
+    display: flex;
+    align-items: center;
 `;
 
