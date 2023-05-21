@@ -5,12 +5,10 @@ import genres from "constants/genres.json";
 import { MovieExplainProp } from "./types";
 import StarIcon from "@mui/icons-material/Star";
 // StyleComponents
+import "./MovieDetails.css";
 
-// Components
 import GenreLabel from "components/GenreLabel/GenreLabel";
 
-// FC = Functional Component
-// MovieCardProp = Interface
 const MovieDetails: React.FC<MovieExplainProp> = ({
   path,
   adult,
@@ -45,22 +43,31 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
     }
   };
 
+  const getForAdult = (adult: boolean) => {
+    if (adult) {
+      return "No";
+    } else {
+      return "Yes";
+    }
+  };
+
   return (
-    <div>
-      <h1>{title}</h1>
-      <div>
-        <img src={poster} alt={title} />
-        <div>
-          <h2>{title}</h2>
-          <p>{overview}</p>
-          <p>{releaseDate}</p>
-          <p>{runtime}</p>
-          <p>{voteCount}</p>
-          <p>{adult}</p>
-          <p>{getGenre(genreId)}</p>
-          <p>{voteAverage}</p>
-          <p>{id}</p>
+    <div className="details-container">
+      <img src={poster} alt={title} style={{ height: "600px" }} />
+      <div className="details-info">
+        <h2 className="details-title">{title}</h2>
+        <div className="details-subinfo">
+          <p>For adults: {getForAdult(adult)}</p>
+          <p>Runtime: {runtime}</p>
+          <p>Release date: {releaseDate}</p>
+          <p style={{ color: getRatingColor(voteAverage) }}>
+            Rating: {voteAverage} / 10
+          </p>
+          <p>Vote Count: {voteCount}</p>
         </div>
+        <p className="details-overview">{overview}</p>
+        <p className="details-genre">Genre: {getGenre(genreId)}</p>
+        <button className="details-fav">Add to favorites</button>
       </div>
     </div>
   );

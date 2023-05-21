@@ -1,0 +1,46 @@
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+.details-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.details-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.details-subinfo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.details-subinfo p {
+    margin-right: 10px;
+}
+
+.details-overview {
+    margin-bottom: 20px;
+}
+
+.details-genre {
+    margin-bottom: 20px;
+}
+
+.details-fav {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
