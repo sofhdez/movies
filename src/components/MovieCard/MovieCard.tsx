@@ -14,6 +14,7 @@ import { ImageContainer,
   ShowTitle } from "./styles";
   // Components
 import GenreLabel from "components/GenreLabel/GenreLabel";
+import { Link } from "react-router-dom";
 
 // FC = Functional Component
 // MovieCardProp = Interface
@@ -22,6 +23,7 @@ const MovieCard: React.FC<MovieCardProp> = ({
   title,
   voteAverage,
   genreId,
+  id
 }) => {
   const poster = IMAGE_SOURCE + path;
 
@@ -47,23 +49,25 @@ const MovieCard: React.FC<MovieCardProp> = ({
     
 
   return (
-    <ShowBox>
-      <ImageContainer>
-        <ShowThumb src={poster} />
-      </ImageContainer>
-      <InfoShow>
-        <ShowTitle>
-          <GenreLabel genre={getGenre(genreId)} color={getRatingColor(voteAverage)} />
-          <ShowLabelTitle>{title}</ShowLabelTitle>
-          <ShowCalification>
-            <StarIcon /> 
-            <span>
-              {voteAverage} / 10
-            </span>
+    <Link to={`/movie/${id}`}>
+      <ShowBox>
+        <ImageContainer>
+          <ShowThumb src={poster} />
+        </ImageContainer>
+        <InfoShow>
+          <ShowTitle>
+            <GenreLabel genre={getGenre(genreId)} color={getRatingColor(voteAverage)} />
+            <ShowLabelTitle>{title}</ShowLabelTitle>
+            <ShowCalification>
+              <StarIcon /> 
+              <span>
+                {voteAverage} / 10
+              </span>
             </ShowCalification>
-        </ShowTitle>
-      </InfoShow>
-    </ShowBox>
+          </ShowTitle>
+        </InfoShow>
+      </ShowBox>
+    </Link>
   );
 };
 

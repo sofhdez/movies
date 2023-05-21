@@ -3,4 +3,5 @@ export interface MovieCardProp {
   title: string;
   voteAverage: number;
   genreId: number;
+  id: number;
 }

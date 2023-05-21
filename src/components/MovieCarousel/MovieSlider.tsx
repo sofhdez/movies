@@ -48,6 +48,7 @@ const MovieSlider = ({ fetchMoviesFunction }: { fetchMoviesFunction: () => Promi
           {movies.map((movie) => (
             <div key={movie.id} className="slider-item">
               <MovieCard
+                id={movie.id} // Incluye el id de la película aquí
                 path={movie.poster_path}
                 title={movie.title}
                 voteAverage={movie.vote_average}
