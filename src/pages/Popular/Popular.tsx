@@ -1,34 +1,32 @@
-import { CircularProgress } from '@mui/material';
-import { MovieCard } from 'components/MovieCard';
-import React, {useEffect, useState} from 'react'
-import { getPopular } from 'services';
+import { CircularProgress } from "@mui/material";
+import { MovieCard } from "components/MovieCard";
+import React, { useEffect, useState } from "react";
+import { getPopular } from "services";
 
 const Popular = () => {
   const [populars, setPopular] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getPopularMovies = async () => {
-    setLoading(true)
+    setLoading(true);
     await getPopular()
-            .then((res) => {
-
-              // If the response exists and the data exists, set the popular state to the data
-              if (res && res.data) {
-                setPopular(res.data.results)
-                console.log(res.data.results)
-              }
-            })
-            .catch((err) => {
-              console.log(err)
-            }
-          )
-      setLoading(false)
-  }
+      .then((res) => {
+        // If the response exists and the data exists, set the popular state to the data
+        if (res && res.data) {
+          setPopular(res.data.results);
+          console.log(res.data.results);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setLoading(false);
+  };
 
   useEffect(() => {
-    getPopularMovies()
+    getPopularMovies();
     // add more endpoints here
-  }, []) // only run once with []
+  }, []); // only run once with []
   // every times [popular] changes, useEffect will run
 
   return (
@@ -48,7 +46,7 @@ const Popular = () => {
         <CircularProgress />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Popular
+export default Popular;
