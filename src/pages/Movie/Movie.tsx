@@ -1,8 +1,9 @@
 import { CircularProgress } from "@mui/material";
+import { MovieSlider } from "components/MovieCarousel";
 import { MovieDetails } from "components/MovieDetails";
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getMovieDetails } from "services";
+import { getMovieDetails, getRecommendations } from "services";
 
 const MovieDetailPage = () => {
   const [movie, setMovie] = useState<any>(null);
@@ -23,7 +24,7 @@ const MovieDetailPage = () => {
   }, [getMovieInfo]); // Y aquí pasas getMovieInfo como dependencia a useEffect
 
   return (
-    <div>
+    <div style={{ margin: "20px" }}>
       {loading ? (
         <CircularProgress />
       ) : movie ? (
@@ -42,6 +43,9 @@ const MovieDetailPage = () => {
       ) : (
         <p>No se encontró la película</p>
       )}
+
+      <h2>RECOMMENDATIONS</h2>
+      <MovieSlider fetchMoviesFunction={() => getRecommendations(Number(id))} />
     </div>
   );
 };
