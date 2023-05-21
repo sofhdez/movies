@@ -1,4 +1,4 @@
-import { Home,  MyFavorites,  NowPlaying,  Popular,  TopRated } from "pages";
+import { Home,  Movie,  MyFavorites,  NowPlaying,  Popular,  TopRated } from "pages";
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import PrivateRouter from "./PrivateRouter";
 import PublicRouter from "./PublicRouter";
@@ -29,6 +29,10 @@ const routes: RouteObject[] = [
             {
                 path: "/my-favorites",
                 element: <MyFavorites />,
+            },
+            {
+                path: "/movie/:id",
+                element: <Movie />,
             }
         ],
     },

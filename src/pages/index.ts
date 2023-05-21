@@ -3,3 +3,4 @@ export { TopRated } from './TopRated';
 export { Popular } from './Popular';
 export { NowPlaying } from './NowPlaying';
 export { MyFavorites } from './MyFavorites';
+export { Movie } from './Movie';

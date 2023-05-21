@@ -3,21 +3,25 @@ import { IMAGE_SOURCE, movies } from "constants/moviesMock";
 import genres from "constants/genres.json";
 // MovieCardProp is an interface that we will create in the next step
 import { MovieExplainProp } from "./types";
-import StarIcon from '@mui/icons-material/Star';
+import StarIcon from "@mui/icons-material/Star";
 // StyleComponents
 
-  // Components
+// Components
 import GenreLabel from "components/GenreLabel/GenreLabel";
-import { Link } from "react-router-dom";
 
 // FC = Functional Component
 // MovieCardProp = Interface
 const MovieDetails: React.FC<MovieExplainProp> = ({
   path,
+  adult,
+  overview,
   title,
   voteAverage,
   genreId,
-  id
+  releaseDate,
+  runtime,
+  voteCount,
+  id,
 }) => {
   const poster = IMAGE_SOURCE + path;
 
@@ -40,11 +44,24 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
       return "#D45550";
     }
   };
-    
 
   return (
     <div>
-        <h1>{title}</h1>
+      <h1>{title}</h1>
+      <div>
+        <img src={poster} alt={title} />
+        <div>
+          <h2>{title}</h2>
+          <p>{overview}</p>
+          <p>{releaseDate}</p>
+          <p>{runtime}</p>
+          <p>{voteCount}</p>
+          <p>{adult}</p>
+          <p>{getGenre(genreId)}</p>
+          <p>{voteAverage}</p>
+          <p>{id}</p>
+        </div>
+      </div>
     </div>
   );
 };
