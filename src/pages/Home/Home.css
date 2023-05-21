@@ -1,4 +1,8 @@
 /* HomePage.css */
+.homepage {
+    margin: 20px;
+}
+
 .title-section {
     display: flex;
     justify-content: space-between;

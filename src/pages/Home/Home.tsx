@@ -8,7 +8,7 @@ import './Home.css';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="homepage">
       <div className="title-section">
         <h2>Más Votadas</h2>
         <Button text="Ver todas" link="/top-rated" /> {/* Ajusta el link según sea necesario */}
