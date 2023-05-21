@@ -45,7 +45,10 @@ const MovieDetailPage = () => {
       )}
 
       <h2>RECOMMENDATIONS</h2>
-      <MovieSlider fetchMoviesFunction={() => getRecommendations(Number(id))} />
+      <MovieSlider
+        key={id}
+        fetchMoviesFunction={() => getRecommendations(Number(id))}
+      />
     </div>
   );
 };
