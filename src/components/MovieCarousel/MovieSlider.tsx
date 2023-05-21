@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { CircularProgress } from "@mui/material";
 import { MovieCard } from "components/MovieCard";
 import "./MovieSlider.css";
@@ -9,18 +9,12 @@ interface MovieData {
   title: string;
   vote_average: number;
   genre_ids: number[];
-  // Añade aquí cualquier otro campo que necesites
 }
 
-// Asume que la prop "fetchMoviesFunction" es la función que vas a usar para traer las películas
 const MovieSlider = ({ fetchMoviesFunction }: { fetchMoviesFunction: () => Promise<any> }) => {
   const [movies, setMovies] = useState<MovieData[]>([]);
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [currentTranslate, setCurrentTranslate] = useState(0);
-  const [prevTranslate, setPrevTranslate] = useState(0);
 
   const fetchMovies = async () => {
     setLoading(true);
@@ -40,49 +34,17 @@ const MovieSlider = ({ fetchMoviesFunction }: { fetchMoviesFunction: () => Promi
     fetchMovies();
   }, []);
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    setStartX(event.pageX - sliderRef.current!.offsetLeft);
-    setPrevTranslate(currentTranslate);
-  };
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-
-    event.preventDefault();
-
-    const x = event.pageX - sliderRef.current!.offsetLeft;
-    const moveX = x - startX;
-    setCurrentTranslate(prevTranslate + moveX);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    sliderRef.current!.scrollLeft += e.deltaY;
+  }
 
   return (
-    <div
-      className="slider-container"
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="slider-container" ref={sliderRef} onWheel={handleWheel}>
       {loading ? (
         <CircularProgress />
       ) : (
-        <div
-          className="slider"
-          ref={sliderRef}
-          style={{
-            transform: `translateX(${currentTranslate}px)`,
-            cursor: isDragging ? "grabbing" : "grab",
-          }}
-          onMouseDown={handleMouseDown}
-        >
+        <div className="slider">
           {movies.map((movie) => (
             <div key={movie.id} className="slider-item">
               <MovieCard
