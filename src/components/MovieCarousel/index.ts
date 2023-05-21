@@ -1,1 +1,1 @@
-export { default as MovieCarousel } from './MovieCarousel';
+export { default as MovieSlider } from './MovieSlider';

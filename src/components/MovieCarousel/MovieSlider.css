@@ -1,0 +1,32 @@
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: max-content;
+    transition: transform 0.5s ease;
+    user-select: none;
+}
+
+.slider-item {
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .slider {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    .slider::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .slider::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 3px;
+    }
+}

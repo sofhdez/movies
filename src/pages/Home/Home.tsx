@@ -1,19 +1,20 @@
 import React from 'react';
-import {MovieCarousel} from 'components/MovieCarousel';
+import {MovieSlider} from 'components/MovieCarousel';
 import { getNowPlaying, getPopular, getTopRated } from 'services';
 
 
 const HomePage = () => {
   return (
     <div>
+      {/* Add button to the page */}
       <h2>Más Votadas</h2>
-      <MovieCarousel fetchMoviesFunction={getTopRated} />
+      <MovieSlider fetchMoviesFunction={getTopRated} />
 
       <h2>Más Populares</h2>
-      <MovieCarousel fetchMoviesFunction={getPopular} />
+      <MovieSlider fetchMoviesFunction={getPopular} />
 
       <h2>Now Playing</h2>
-      <MovieCarousel fetchMoviesFunction={getNowPlaying} />
+      <MovieSlider fetchMoviesFunction={getNowPlaying} />
     </div>
   );
 }
