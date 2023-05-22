@@ -1,5 +1,6 @@
 export interface MovieExplainProp {
   path: string;
+  poster_path: string;
   adult: boolean;
   overview: string;
   title: string;
