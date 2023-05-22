@@ -9,5 +9,4 @@ export interface MovieExplainProp {
   runtime: number;
   voteCount: number;
   id: number;
-  onAddFavorite: () => void;
 }

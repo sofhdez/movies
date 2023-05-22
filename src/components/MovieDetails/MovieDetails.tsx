@@ -3,7 +3,7 @@ import { IMAGE_SOURCE, movies } from "constants/moviesMock";
 import genres from "constants/genres.json";
 // MovieCardProp is an interface that we will create in the next step
 import { MovieExplainProp } from "./types";
-import StarIcon from "@mui/icons-material/Star";
+
 // StyleComponents
 import "./MovieDetails.css";
 
@@ -20,6 +20,7 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
   runtime,
   voteCount,
   id,
+  onAddFavorite,
 }) => {
   const poster = IMAGE_SOURCE + path;
 
@@ -67,7 +68,9 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
         </div>
         <p className="details-overview">{overview}</p>
         <p className="details-genre">Genre: {getGenre(genreId)}</p>
-        <button className="details-fav">Add to favorites</button>
+        <button className="details-fav" onClick={onAddFavorite}>
+          Agregar a favoritos
+        </button>
       </div>
     </div>
   );

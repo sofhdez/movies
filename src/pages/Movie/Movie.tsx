@@ -8,6 +8,7 @@ import { getMovieDetails, getRecommendations } from "services";
 const MovieDetailPage = () => {
   const [movie, setMovie] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [favorites, setFavorites] = useState<any[]>([]);
   const { id } = useParams();
 
   const getMovieInfo = useCallback(async () => {
@@ -21,7 +22,25 @@ const MovieDetailPage = () => {
 
   useEffect(() => {
     getMovieInfo();
+    // Obtenemos las películas favoritas del localStorage cuando se carga el componente
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
   }, [getMovieInfo]); // Y aquí pasas getMovieInfo como dependencia a useEffect
+
+  const addFavorite = (movie: any) => {
+    // Check if movie is already in favorites
+    const alreadyFavorite = favorites.some(
+      (favoriteMovie: any) => favoriteMovie.id === movie.id
+    );
+
+    if (!alreadyFavorite) {
+      const newFavorites = [...favorites, movie];
+      setFavorites(newFavorites);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    }
+  };
 
   return (
     <div style={{ margin: "20px" }}>
@@ -39,6 +58,7 @@ const MovieDetailPage = () => {
           runtime={movie.runtime}
           voteCount={movie.vote_count}
           id={movie.id}
+          onAddFavorite={() => addFavorite(movie)}
         />
       ) : (
         <p>No se encontró la película</p>
