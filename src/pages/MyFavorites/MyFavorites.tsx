@@ -32,7 +32,7 @@ const MyFavorites = () => {
           />
         ))
       ) : (
-        <p>No tienes ninguna película favorita aún.</p>
+        <p>You don't have any favorite movie yet</p>
       )}
     </div>
   );
