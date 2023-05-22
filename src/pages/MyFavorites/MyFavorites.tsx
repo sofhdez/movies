@@ -19,7 +19,7 @@ const MyFavorites = () => {
 
   return (
     <div style={{ margin: "20px" }}>
-      <h2>Mis Películas Favoritas</h2>
+      <h2>My favorites</h2>
       {favoriteMovies.length > 0 ? (
         favoriteMovies.map((movie) => (
           <MovieCard

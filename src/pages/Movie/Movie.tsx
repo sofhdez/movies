@@ -85,10 +85,10 @@ const MovieDetailPage = () => {
           )}
         />
       ) : (
-        <p>No se encontró la película</p>
+        <p>Movie not found</p>
       )}
 
-      <h2>RECOMMENDATIONS</h2>
+      <h2>Recommendations</h2>
       <MovieSlider
         key={id}
         fetchMoviesFunction={() => getRecommendations(Number(id))}

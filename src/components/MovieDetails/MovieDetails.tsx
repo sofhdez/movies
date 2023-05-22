@@ -94,7 +94,7 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
           className={`details-fav ${isFavorite ? "details-fav--active" : ""}`}
           onClick={onAddFavorite}
         >
-          {isFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
+          {isFavorite ? "Remove from favorites" : "Add to favorites"}
         </button>
       </MovieDetailsInfo>
     </MovieDetailsContainer>
