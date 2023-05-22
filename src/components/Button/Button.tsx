@@ -1,6 +1,6 @@
 // Button.tsx
-import React from 'react';
-import './Button.css';
+import React from "react";
+import { ButtonLink } from "./style";
 
 interface ButtonProps {
   text: string;
@@ -8,11 +8,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ text, link }) => {
-  return (
-    <a href={link} className="button">
-      {text}
-    </a>
-  );
+  return <ButtonLink href={link}>{text}</ButtonLink>;
 };
 
 export default Button;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { CircularProgress } from "@mui/material";
 import { MovieCard } from "components/MovieCard";
-import "./MovieSlider.css";
+import { ContainerSlider, Item, Slider } from "./style";
 
 interface MovieData {
   id: number;
@@ -11,7 +11,11 @@ interface MovieData {
   genre_ids: number[];
 }
 
-const MovieSlider = ({ fetchMoviesFunction }: { fetchMoviesFunction: () => Promise<any> }) => {
+const MovieSlider = ({
+  fetchMoviesFunction,
+}: {
+  fetchMoviesFunction: () => Promise<any>;
+}) => {
   const [movies, setMovies] = useState<MovieData[]>([]);
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -37,16 +41,16 @@ const MovieSlider = ({ fetchMoviesFunction }: { fetchMoviesFunction: () => Promi
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     e.preventDefault();
     sliderRef.current!.scrollLeft += e.deltaY;
-  }
+  };
 
   return (
-    <div className="slider-container" ref={sliderRef} onWheel={handleWheel}>
+    <ContainerSlider ref={sliderRef} onWheel={handleWheel}>
       {loading ? (
         <CircularProgress />
       ) : (
-        <div className="slider">
+        <Slider>
           {movies.map((movie) => (
-            <div key={movie.id} className="slider-item">
+            <Item key={movie.id}>
               <MovieCard
                 id={movie.id} // Incluye el id de la película aquí
                 path={movie.poster_path}
@@ -54,11 +58,11 @@ const MovieSlider = ({ fetchMoviesFunction }: { fetchMoviesFunction: () => Promi
                 voteAverage={movie.vote_average}
                 genreId={movie.genre_ids[0]}
               />
-            </div>
+            </Item>
           ))}
-        </div>
+        </Slider>
       )}
-    </div>
+    </ContainerSlider>
   );
 };
 

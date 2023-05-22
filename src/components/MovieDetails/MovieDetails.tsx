@@ -8,6 +8,14 @@ import { MovieExplainProp } from "./types";
 import "./MovieDetails.css";
 
 import GenreLabel from "components/GenreLabel/GenreLabel";
+import {
+  MovieDetailsContainer,
+  MovieDetailsInfo,
+  MovieDetailsSubInfo,
+  MovieDetailsSubInfoText,
+  MovieDetailsText,
+  MovieDetailsTitle,
+} from "./style";
 
 const MovieDetails: React.FC<MovieExplainProp> = ({
   path,
@@ -61,29 +69,35 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
   };
 
   return (
-    <div className="details-container">
+    <MovieDetailsContainer>
       <img src={poster} alt={title} style={{ height: "600px" }} />
-      <div className="details-info">
-        <h2 className="details-title">{title}</h2>
-        <div className="details-subinfo">
-          <p>For adults: {getForAdult(adult)}</p>
-          <p>Runtime: {runtime}</p>
-          <p>Release date: {releaseDate}</p>
-          <p style={{ color: getRatingColor(voteAverage) }}>
+      <MovieDetailsInfo>
+        <MovieDetailsTitle>{title}</MovieDetailsTitle>
+        <MovieDetailsSubInfo>
+          <MovieDetailsSubInfoText>
+            For adults: {getForAdult(adult)}
+          </MovieDetailsSubInfoText>
+          <MovieDetailsSubInfoText>Runtime: {runtime}</MovieDetailsSubInfoText>
+          <MovieDetailsSubInfoText>
+            Release date: {releaseDate}
+          </MovieDetailsSubInfoText>
+          <MovieDetailsSubInfoText
+            style={{ color: getRatingColor(voteAverage) }}
+          >
             Rating: {voteAverage} / 10
-          </p>
+          </MovieDetailsSubInfoText>
           <p>Vote Count: {voteCount}</p>
-        </div>
-        <p className="details-overview">{overview}</p>
-        <p className="details-genre">Genre: {getGenre(genreId)}</p>
+        </MovieDetailsSubInfo>
+        <MovieDetailsText>{overview}</MovieDetailsText>
+        <MovieDetailsText>Genre: {getGenre(genreId)}</MovieDetailsText>
         <button
           className={`details-fav ${isFavorite ? "details-fav--active" : ""}`}
           onClick={onAddFavorite}
         >
           {isFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
         </button>
-      </div>
-    </div>
+      </MovieDetailsInfo>
+    </MovieDetailsContainer>
   );
 };
 

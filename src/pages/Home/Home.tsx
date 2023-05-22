@@ -1,33 +1,31 @@
-import React from 'react';
-import {MovieSlider} from 'components/MovieCarousel';
-import { getNowPlaying, getPopular, getTopRated } from 'services';
-import Button from 'components/Button/Button';
-
-import './Home.css';
-
+import React from "react";
+import { MovieSlider } from "components/MovieCarousel";
+import { getNowPlaying, getPopular, getTopRated } from "services";
+import Button from "components/Button/Button";
+import { HomeDiv, TitleSection } from "./style";
 
 const HomePage = () => {
   return (
-    <div className="homepage">
-      <div className="title-section">
-        <h2>Más Votadas</h2>
-        <Button text="Ver todas" link="/top-rated" /> {/* Ajusta el link según sea necesario */}
-      </div>
+    <HomeDiv>
+      <TitleSection>
+        <h2>Top Rated</h2>
+        <Button text="Ver todas" link="/top-rated" />{" "}
+      </TitleSection>
       <MovieSlider fetchMoviesFunction={getTopRated} />
 
-      <div className="title-section">
-        <h2>Más Populares</h2>
+      <TitleSection>
+        <h2>Popular</h2>
         <Button text="Ver todas" link="/popular" />
-      </div>
+      </TitleSection>
       <MovieSlider fetchMoviesFunction={getPopular} />
 
-      <div className="title-section">
+      <TitleSection>
         <h2>Now Playing</h2>
         <Button text="Ver todas" link="/now-playing" />
-      </div>
+      </TitleSection>
       <MovieSlider fetchMoviesFunction={getNowPlaying} />
-    </div>
+    </HomeDiv>
   );
-}
+};
 
 export default HomePage;
