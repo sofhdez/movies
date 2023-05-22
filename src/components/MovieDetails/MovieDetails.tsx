@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IMAGE_SOURCE, movies } from "constants/moviesMock";
 import genres from "constants/genres.json";
 // MovieCardProp is an interface that we will create in the next step
@@ -21,7 +21,15 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
   voteCount,
   id,
   onAddFavorite,
+  isFavorite,
 }) => {
+  const [favorite, setIsFavorite] = useState(false);
+
+  const handleAddFavorite = () => {
+    setIsFavorite(true);
+    onAddFavorite();
+  };
+
   const poster = IMAGE_SOURCE + path;
 
   const getGenre = (genreId: number) => {
@@ -68,7 +76,10 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
         </div>
         <p className="details-overview">{overview}</p>
         <p className="details-genre">Genre: {getGenre(genreId)}</p>
-        <button className="details-fav" onClick={onAddFavorite}>
+        <button
+          className={`details-fav ${isFavorite ? "details-fav--active" : ""}`}
+          onClick={handleAddFavorite}
+        >
           Agregar a favoritos
         </button>
       </div>

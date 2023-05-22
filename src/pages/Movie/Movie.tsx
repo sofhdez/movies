@@ -9,6 +9,7 @@ const MovieDetailPage = () => {
   const [movie, setMovie] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState<any[]>([]);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { id } = useParams();
 
   const getMovieInfo = useCallback(async () => {
@@ -25,9 +26,14 @@ const MovieDetailPage = () => {
     // Obtenemos las películas favoritas del localStorage cuando se carga el componente
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
+      const favoritesList = JSON.parse(storedFavorites);
+      setFavorites(favoritesList);
+      // Comprueba si la película actual ya está en los favoritos
+      setIsFavorite(
+        favoritesList.some((favMovie: any) => favMovie.id === Number(id))
+      );
     }
-  }, [getMovieInfo]); // Y aquí pasas getMovieInfo como dependencia a useEffect
+  }, [getMovieInfo, id]); // Y aquí pasas getMovieInfo y id como dependencias a useEffect
 
   const addFavorite = (movie: any) => {
     // Check if movie is already in favorites
@@ -39,6 +45,7 @@ const MovieDetailPage = () => {
       const newFavorites = [...favorites, movie];
       setFavorites(newFavorites);
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      setIsFavorite(true); // Marcamos la película como favorita
     }
   };
 
@@ -59,6 +66,7 @@ const MovieDetailPage = () => {
           voteCount={movie.vote_count}
           id={movie.id}
           onAddFavorite={() => addFavorite(movie)}
+          isFavorite={isFavorite} // Pasamos isFavorite a MovieDetails
         />
       ) : (
         <p>No se encontró la película</p>

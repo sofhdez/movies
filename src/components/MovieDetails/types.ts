@@ -10,4 +10,5 @@ export interface MovieExplainProp {
   voteCount: number;
   id: number;
   onAddFavorite: () => void;
+  isFavorite: boolean;
 }

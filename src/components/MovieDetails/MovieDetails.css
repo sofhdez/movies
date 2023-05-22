@@ -44,3 +44,8 @@
     border: none;
     cursor: pointer;
 }
+
+.details-fav--active {
+    background-color: red;
+    /* or whatever color you want */
+}
