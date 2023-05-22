@@ -78,9 +78,9 @@ const MovieDetails: React.FC<MovieExplainProp> = ({
         <p className="details-genre">Genre: {getGenre(genreId)}</p>
         <button
           className={`details-fav ${isFavorite ? "details-fav--active" : ""}`}
-          onClick={handleAddFavorite}
+          onClick={onAddFavorite}
         >
-          Agregar a favoritos
+          {isFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
         </button>
       </div>
     </div>
